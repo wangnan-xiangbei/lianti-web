@@ -3,98 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>炼体 - 纯离线健身打卡助手</title>
-<meta name="description" content="炼体：智能训练计划、动作教学、饮食打卡，完全离线，数据只属于你。">
+<title>炼体 - 水墨修仙健身 · 纯离线打卡</title>
+<meta name="description" content="炼体：以修仙之道记录健身。修炼计划、功法图鉴、服食打卡、修为境界——纯离线，数据只属于你。">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body {
-    font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-    color:#111; background:#F2F2F7; line-height:1.7;
+    font-family:"Kaiti SC","STKaiti","KaiTi","楷体",-apple-system,"PingFang SC","Microsoft YaHei",serif;
+    color:#2B2B2B; background:#F7F4EC; line-height:1.8;
   }
-  .container { max-width:1000px; margin:0 auto; padding:0 20px; }
 
   /* ===== 顶部导航 ===== */
   nav {
     position:sticky; top:0; z-index:100;
-    background:rgba(255,255,255,.85); backdrop-filter:blur(12px);
-    border-bottom:1px solid #E5E5EA;
+    background:linear-gradient(180deg,#B03A2E,#C0392B);
+    box-shadow:0 2px 12px rgba(150,40,27,.35);
   }
-  nav .container { display:flex; align-items:center; justify-content:space-between; height:60px; }
-  .logo { font-size:20px; font-weight:800; color:#FF6B35; }
-  .nav-links a { color:#333; text-decoration:none; margin-left:24px; font-size:15px; }
-  .nav-links a:hover { color:#FF6B35; }
+  nav .container { display:flex; align-items:center; justify-content:space-between; height:64px; max-width:1000px; margin:0 auto; padding:0 20px; }
+  .logo { font-size:22px; font-weight:800; color:#FCFBF6; letter-spacing:4px; display:flex; align-items:center; gap:10px; }
+  .logo .seal {
+    width:26px; height:26px; background:#FCFBF6; color:#B03A2E;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:4px; font-size:15px; font-weight:800;
+  }
+  .nav-links a { color:rgba(255,255,255,.9); text-decoration:none; margin-left:26px; font-size:16px; }
+  .nav-links a:hover { color:#F5DFA0; }
+
+  /* ===== 通用容器/章节 ===== */
+  .container { max-width:1000px; margin:0 auto; padding:0 20px; }
+  section { padding:72px 0; position:relative; }
+  .sec-title { text-align:center; font-size:34px; font-weight:800; letter-spacing:2px; margin-bottom:10px; color:#2B2B2B; }
+  .sec-desc { text-align:center; color:#6B6B6B; margin-bottom:48px; font-size:16px; }
 
   /* ===== 首屏 ===== */
-  .hero { text-align:center; padding:90px 20px 70px; }
+  .hero {
+    text-align:center; padding:110px 20px 90px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 115%, rgba(43,43,43,.10), transparent 70%),
+      linear-gradient(180deg,#FAF6EA 0%, #F2ECD9 100%);
+  }
+  .hero .mountain {
+    position:absolute; left:0; right:0; bottom:0; height:200px;
+    background:url('mountain.png') bottom/cover no-repeat;
+    opacity:.25; pointer-events:none;
+  }
   .app-icon {
-    width:96px; height:96px; border-radius:22px; background:#FF6B35;
-    margin:0 auto 24px; display:flex; align-items:center; justify-content:center;
-    box-shadow:0 12px 32px rgba(255,107,53,.35);
-    animation:float 3.5s ease-in-out infinite;
+    width:110px; height:110px; margin:0 auto 26px; border-radius:24px;
+    background:#FCFBF6; border:2px solid #C9A961;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 36px rgba(176,58,46,.25);
+    animation:float 3.8s ease-in-out infinite;
+    font-size:56px; font-weight:800; color:#2B2B2B;
   }
-  .app-icon svg { width:56px; height:56px; fill:#fff; }
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-  .hero h1 { font-size:44px; font-weight:800; letter-spacing:1px; }
-  .hero h1 span { color:#FF6B35; }
-  .hero p.sub { font-size:19px; color:#6E6E73; margin:16px 0 36px; }
+  .hero h1 { font-size:46px; font-weight:800; letter-spacing:6px; }
+  .hero h1 span { color:#B03A2E; }
+  .hero p.sub { font-size:19px; color:#6B6B6B; margin:18px 0 40px; letter-spacing:2px; }
   .btn-download {
-    display:inline-block; background:#FF6B35; color:#fff; text-decoration:none;
-    padding:15px 46px; border-radius:999px; font-size:17px; font-weight:700;
-    transition:.25s; box-shadow:0 8px 24px rgba(255,107,53,.4);
+    display:inline-block; background:linear-gradient(135deg,#C0392B,#96281B);
+    color:#FCFBF6; text-decoration:none; padding:16px 52px; border-radius:999px;
+    font-size:17px; font-weight:700; letter-spacing:2px; transition:.3s;
+    border:1px solid #E8B4A8; box-shadow:0 10px 28px rgba(176,58,46,.4);
   }
-  .btn-download:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 14px 32px rgba(255,107,53,.5); }
-  .hero .tip { margin-top:14px; font-size:13px; color:#8E8E93; }
+  .btn-download:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(176,58,46,.5); }
+  .hero .tip { margin-top:16px; font-size:13px; color:#9E9E93; letter-spacing:1px; }
 
-  /* ===== 章节通用 ===== */
-  section { padding:70px 0; }
-  .sec-title { text-align:center; font-size:30px; font-weight:800; margin-bottom:10px; }
-  .sec-desc { text-align:center; color:#6E6E73; margin-bottom:46px; font-size:16px; }
-
-  /* ===== 功能卡片 ===== */
-  .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+  /* ===== 金边卡片 ===== */
+  .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
   .card {
-    background:#fff; border:1px solid #E5E5EA; border-radius:20px; padding:30px 26px;
-    transition:.3s;
+    background:linear-gradient(180deg,#FCF6E7,#F4EAD2);
+    border:1.2px solid #C9A961; border-radius:18px; padding:30px 26px;
+    transition:.3s; position:relative;
   }
-  .card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,.08); }
+  .card::after {
+    content:"炼"; position:absolute; top:14px; right:14px;
+    width:22px; height:22px; background:#B03A2E; color:#FCFBF6;
+    font-size:12px; display:flex; align-items:center; justify-content:center;
+    border-radius:3px;
+  }
+  .card:hover { transform:translateY(-6px); box-shadow:0 18px 44px rgba(120,90,40,.18); }
   .card .icon { font-size:34px; margin-bottom:14px; }
-  .card h3 { font-size:18px; margin-bottom:8px; }
-  .card p { font-size:14.5px; color:#6E6E73; }
+  .card h3 { font-size:19px; margin-bottom:8px; color:#2B2B2B; }
+  .card p { font-size:14.5px; color:#6B6B6B; }
 
-  /* ===== 隐私强调 ===== */
+  /* ===== 境界长卷 ===== */
+  .realms {
+    background:linear-gradient(180deg,#FCF6E7,#F4EAD2);
+    border:1.2px solid #C9A961; border-radius:20px;
+    padding:34px 24px; text-align:center;
+  }
+  .realm-track { display:flex; flex-wrap:wrap; justify-content:center; gap:10px 6px; margin-top:22px; }
+  .realm {
+    padding:8px 16px; border-radius:999px; font-size:15px; letter-spacing:2px;
+    background:#FCFBF6; border:1px solid #C9A961; color:#6B6B6B;
+  }
+  .realm.hl { background:#B03A2E; color:#FCFBF6; border-color:#B03A2E; font-weight:700; }
+  .realm-note { margin-top:18px; font-size:13.5px; color:#9E9E93; }
+
+  /* ===== 隐私大卡 ===== */
   .privacy-hero {
-    background:linear-gradient(135deg,#FF6B35,#E05520); color:#fff;
-    border-radius:28px; padding:54px 40px; text-align:center;
+    background:linear-gradient(135deg,#B03A2E,#96281B); color:#FCFBF6;
+    border-radius:24px; padding:56px 40px; text-align:center;
+    border:1px solid #E8B4A8;
   }
-  .privacy-hero h2 { font-size:30px; font-weight:800; margin-bottom:12px; }
-  .privacy-hero p { font-size:16px; opacity:.92; max-width:640px; margin:0 auto; }
+  .privacy-hero h2 { font-size:30px; font-weight:800; letter-spacing:3px; margin-bottom:14px; }
+  .privacy-hero p { font-size:16px; opacity:.94; max-width:640px; margin:0 auto; }
 
-  /* ===== 截图区 ===== */
-  .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+  /* ===== 截图 ===== */
+  .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; }
   .shot {
-    background:#fff; border:1px solid #E5E5EA; border-radius:20px; overflow:hidden;
-    aspect-ratio:9/16; display:flex; align-items:center; justify-content:center;
-    color:#B0B0B5; font-size:14px; transition:.3s;
+    background:#FCFBF6; border:1.2px solid #C9A961; border-radius:18px; overflow:hidden;
+    aspect-ratio:9/17; display:flex; align-items:center; justify-content:center;
+    color:#B0AA9C; font-size:14px; transition:.3s;
   }
-  .shot:hover { transform:translateY(-5px); box-shadow:0 14px 36px rgba(0,0,0,.08); }
+  .shot:hover { transform:translateY(-5px); box-shadow:0 16px 38px rgba(120,90,40,.16); }
   .shot img { width:100%; height:100%; object-fit:cover; }
 
   /* ===== 政策正文 ===== */
   .policy {
-    background:#fff; border:1px solid #E5E5EA; border-radius:20px;
+    background:#FCFBF6; border:1.2px solid #C9A961; border-radius:20px;
     padding:36px 30px; max-width:820px; margin:0 auto; font-size:15px;
   }
-  .policy h3 { margin:20px 0 8px; font-size:16.5px; }
+  .policy h3 { margin:20px 0 8px; font-size:16.5px; color:#B03A2E; }
   .policy p, .policy li { color:#3A3A3C; }
   .policy ul { padding-left:22px; }
-  .policy .muted { color:#8E8E93; font-size:13px; }
+  .policy .muted { color:#9E9E93; font-size:13px; }
 
   /* ===== 页脚 ===== */
-  footer { background:#fff; border-top:1px solid #E5E5EA; padding:34px 0; text-align:center;
-    color:#8E8E93; font-size:13.5px; margin-top:40px; }
-  footer a { color:#6E6E73; text-decoration:none; }
-  footer a:hover { color:#FF6B35; }
+  footer { background:#2B2B2B; color:#9E9E93; padding:36px 0; text-align:center; font-size:13.5px; margin-top:50px; }
+  footer .f-logo { color:#FCFBF6; font-size:18px; letter-spacing:4px; margin-bottom:8px; }
+  footer a { color:#C9A961; text-decoration:none; }
+  footer a:hover { color:#F5DFA0; }
 
   /* ===== 入场动画 ===== */
   .reveal { opacity:0; transform:translateY(26px); transition:.7s cubic-bezier(.16,1,.3,1); }
@@ -105,10 +144,12 @@
 
 <nav>
   <div class="container">
-    <div class="logo">炼体</div>
+    <div class="logo"><span class="seal">炼</span>炼体</div>
     <div class="nav-links">
-      <a href="#features">功能</a>
-      <a href="#shots">截图</a>
+      <a href="#features">功法</a>
+      <a href="#realms">境界</a>
+      <a href="#shots">预览</a>
+      <a href="#download">下载</a>
       <a href="#policy">隐私政策</a>
     </div>
   </div>
@@ -116,33 +157,50 @@
 
 <!-- 首屏 -->
 <header class="hero">
-  <div class="app-icon">
-    <svg viewBox="0 0 24 24"><path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/></svg>
-  </div>
-  <h1>炼体 <span>·</span> 让每一次训练都有迹可循</h1>
-  <p class="sub">纯离线健身打卡助手 —— 智能计划 · 动作教学 · 饮食记录 · 数据只属于你</p>
-  <a class="btn-download" href="#download">📱 下载炼体</a>
+  <div class="mountain"></div>
+  <div class="app-icon">炼</div>
+  <h1>炼体 <span>·</span> 以修仙之道，炼此身</h1>
+  <p class="sub">修炼计划 · 功法图鉴 · 服食打卡 · 修为境界 —— 纯离线，数据只属于你</p>
+  <a class="btn-download" href="lianTi_v1.1.apk" download>⬇️ 下载炼体（v1.1）</a>
   <p class="tip">Android · 完全免费 · 无广告 · 无需注册</p>
 </header>
 
 <!-- 功能 -->
 <section id="features">
   <div class="container">
-    <h2 class="sec-title reveal">核心功能</h2>
-    <p class="sec-desc reveal">一个 App，覆盖练、吃、记的全流程</p>
+    <h2 class="sec-title reveal">六艺功法</h2>
+    <p class="sec-desc reveal">练、吃、记、悟，一册全包</p>
     <div class="features">
-      <div class="card reveal"><div class="icon">🏋️</div><h3>智能训练计划</h3>
-        <p>根据身高、体重、体脂与训练经验，自动生成专属抗阻计划；也能完全自定义每周安排。</p></div>
-      <div class="card reveal"><div class="icon">📖</div><h3>动作教学图鉴</h3>
-        <p>26 个健身房经典动作：分步教学、呼吸节奏、常见错误提醒，新手也能练得标准。</p></div>
-      <div class="card reveal"><div class="icon">🥗</div><h3>饮食打卡管理</h3>
-        <p>增肌/减脂一键切换，自动计算每日热量与蛋白质，内置常见食物库，记录即得建议。</p></div>
-      <div class="card reveal"><div class="icon">📸</div><h3>拍照打卡</h3>
-        <p>训练后随手拍一张，照片存在手机里，见证身材一天天变化。</p></div>
-      <div class="card reveal"><div class="icon">⏱️</div><h3>组间休息计时</h3>
-        <p>一键开启倒计时，结束震动提醒，训练节奏尽在掌握。</p></div>
-      <div class="card reveal"><div class="icon">🔒</div><h3>100% 离线</h3>
-        <p>不注册、不登录、不联网收集数据，所有记录仅保存在你的手机中。</p></div>
+      <div class="card reveal"><div class="icon">🏋️</div><h3>修炼计划</h3>
+        <p>宗门依根骨自动排课，亦可自创功法布置每日功课，组数次数皆由心定。</p></div>
+      <div class="card reveal"><div class="icon">📖</div><h3>功法阁</h3>
+        <p>110 余式招式详解：徒手、哑铃、杠铃、器械四类俱全，拆解到呼吸与易犯之误。</p></div>
+      <div class="card reveal"><div class="icon">🍚</div><h3>服食有道</h3>
+        <p>炼形/淬体双道途，热量蛋白自动推演，内置食物库，录而得长老提点。</p></div>
+      <div class="card reveal"><div class="icon">📸</div><h3>摄形留念</h3>
+        <p>功课后摄形一张，形影存于此身，见证日日精进。</p></div>
+      <div class="card reveal"><div class="icon">⏱️</div><h3>调息计时</h3>
+        <p>组间调息，一键倒计时，毕则震动提醒，张弛有度。</p></div>
+      <div class="card reveal"><div class="icon">🔒</div><h3>纯离线</h3>
+        <p>不注册、不登录、不联网收集，一切记录仅存于你的手机。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 境界体系 -->
+<section id="realms" style="background:linear-gradient(180deg,#F2ECD9,#FAF6EA);">
+  <div class="container">
+    <h2 class="sec-title reveal">修为境界 · 十一境</h2>
+    <p class="sec-desc reveal">奖励坚持，而非天赋。从炼体到飞升，每一步修为都算数。</p>
+    <div class="realms reveal">
+      <div class="realm-track">
+        <span class="realm hl">炼体</span><span class="realm">炼气</span><span class="realm">筑基</span>
+        <span class="realm">金丹</span><span class="realm">元婴</span><span class="realm">化神</span>
+        <span class="realm">炼虚</span><span class="realm">合体</span><span class="realm">大乘</span>
+        <span class="realm">渡劫</span><span class="realm">飞升</span>
+      </div>
+      <p class="realm-note">功课圆满 +50 · 训练容量每千斤 +10 · 服食打卡 +10 · 闭关养气 +15<br>
+      周出勤三次以上另有加成 · 境界圆满需闯突破试炼，方可晋入下一境</p>
     </div>
   </div>
 </section>
@@ -152,7 +210,7 @@
   <div class="container">
     <div class="privacy-hero reveal">
       <h2>🔒 数据只属于你</h2>
-      <p>炼体没有任何联网权限，不注册不登录，全部数据保存在手机本地。卸载即彻底删除，没有任何人能看到你的数据——包括开发者。</p>
+      <p>炼体没有任何联网权限，不注册不登录，全部数据保存在手机本地。卸载即彻底删除——没有任何人能看到你的修行记录，包括开发者。</p>
     </div>
   </div>
 </section>
@@ -160,15 +218,15 @@
 <!-- 截图 -->
 <section id="shots">
   <div class="container">
-    <h2 class="sec-title reveal">应用预览</h2>
-    <p class="sec-desc reveal">简洁克制的设计，只保留真正有用的</p>
+    <h2 class="sec-title reveal">界面一览</h2>
+    <p class="sec-desc reveal">水墨为骨，功法为魂</p>
     <div class="shots">
-      <!-- 把你上架用的截图文件和下面文件名对应，和 index.html 放同一文件夹 -->
-      <div class="shot reveal"><img src="shot1.png" alt="今日页"></div>
-      <div class="shot reveal"><img src="shot2.png" alt="训练计划"></div>
-      <div class="shot reveal"><img src="shot3.png" alt="动作教学"></div>
-      <div class="shot reveal"><img src="shot4.png" alt="饮食管理"></div>
+      <div class="shot reveal"><img src="shot1.png" alt="今日功课"></div>
+      <div class="shot reveal"><img src="shot2.png" alt="修炼计划"></div>
+      <div class="shot reveal"><img src="shot3.png" alt="功法阁"></div>
+      <div class="shot reveal"><img src="shot4.png" alt="服食"></div>
     </div>
+    <p class="sec-desc reveal" style="margin-top:18px;font-size:13px;"></p>
   </div>
 </section>
 
@@ -176,11 +234,14 @@
 <section id="download">
   <div class="container">
     <h2 class="sec-title reveal">获取炼体</h2>
-    <p class="sec-desc reveal">已上架以下应用市场（陆续入驻中）</p>
+    <p class="sec-desc reveal">已入驻应用市场（陆续上架中）</p>
     <div class="features">
-      <div class="card reveal" style="text-align:center"><h3>华为应用市场</h3><p class="muted" style="color:#8E8E93;font-size:13px">即将上线</p></div>
-      <div class="card reveal" style="text-align:center"><h3>小米应用商店</h3><p style="color:#8E8E93;font-size:13px">即将上线</p></div>
-      <div class="card reveal" style="text-align:center"><h3>直接下载 APK</h3><p style="color:#8E8E93;font-size:13px">v1.0 · 上传后启用</p></div>
+      <div class="card reveal" style="text-align:center"><h3>华为应用市场</h3><p style="color:#9E9E93;font-size:13px">审核筹备中</p></div>
+      <div class="card reveal" style="text-align:center"><h3>小米应用商店</h3><p style="color:#9E9E93;font-size:13px">审核筹备中</p></div>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+      <a class="btn-download" href="lianTi_v1.1.apk" download>⬇️ 直接下载 APK（v1.1）</a>
+      <p style="margin-top:14px; font-size:13px; color:#9E9E93;">下载后允许"安装未知应用"即可 · 约 30MB</p>
     </div>
   </div>
 </section>
@@ -189,22 +250,22 @@
 <section id="policy">
   <div class="container">
     <h2 class="sec-title reveal">隐私政策</h2>
-    <p class="sec-desc reveal">更新日期：2025 年 X 月 X 日</p>
+    <p class="sec-desc reveal">更新日期：2026 年 9 月 16 日</p>
     <div class="policy reveal">
       <p>「炼体」（以下简称"本应用"）由个人开发者开发，我们非常重视您的隐私。</p>
       <h3>一、我们不收集任何信息</h3>
       <p>本应用为纯离线应用：不注册、不登录、不联网传输数据，不收集、不存储、不上传您的任何个人信息（包括但不限于身份信息、健康数据、运动记录）。</p>
       <h3>二、数据存储</h3>
-      <p>您在使用中产生的全部数据（身体数据、训练记录、饮食记录、打卡照片等）仅保存在您的手机本地存储中，仅您本人可以访问；卸载应用即彻底删除。应用提供"备份数据"功能，由您主动导出文件并自行保管。</p>
+      <p>您在使用中产生的全部数据（身体数据、修炼记录、服食记录、形影照片、修为境界等）仅保存在您的手机本地存储中，仅您本人可以访问；卸载应用即彻底删除。应用提供"备份数据"功能，由您主动导出文件并自行保管。</p>
       <h3>三、权限使用说明</h3>
       <ul>
-        <li><b>相机</b>：仅当您使用"拍照打卡"功能时调用，照片保存在应用私有目录，不上传、不共享。</li>
-        <li><b>震动</b>：仅用于组间休息计时结束提醒。</li>
+        <li><b>相机</b>：仅当您使用"摄形留念"功能时调用，照片保存在应用私有目录，不上传、不共享。</li>
+        <li><b>震动</b>：仅用于调息计时结束提醒。</li>
       </ul>
       <h3>四、未成年人保护</h3>
       <p>本应用不面向儿童收集任何信息。</p>
       <h3>五、联系我们</h3>
-      <p>如有疑问，请联系邮箱：<a href="mailto:your-email@example.com" style="color:#FF6B35">your-email@example.com</a>（← 替换成你的邮箱）</p>
+      <p>如有疑问，请联系邮箱：<a href="mailto:2971875757@qq.com" style="color:#B03A2E">2971875757@qq.com</a></p>
       <p class="muted">本政策可能随版本更新调整，更新后将在本页面发布。</p>
     </div>
   </div>
@@ -212,14 +273,14 @@
 
 <footer>
   <div class="container">
-    <p><b>炼体</b> · 纯离线健身打卡助手</p>
-    <p style="margin-top:6px">ICP 备案号：<span id="icp">备案下来后填这里</span></p>
-    <p style="margin-top:6px">© 2025 炼体 · <a href="#policy">隐私政策</a></p>
+    <div class="f-logo">炼 体</div>
+    <p>淬炼此身 · 一日一功</p>
+    <p style="margin-top:8px">ICP 备案号：<span id="icp"></span></p>
+    <p style="margin-top:8px">© 2025 炼体 · <a href="#policy">隐私政策</a></p>
   </div>
 </footer>
 
 <script>
-  // 滚动浮现动画（苹果式渐入）
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
   }, { threshold:.12 });
